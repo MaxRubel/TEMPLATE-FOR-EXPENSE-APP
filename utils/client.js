@@ -3,13 +3,14 @@ import 'firebase/auth';
 import 'firebase/database';
 
 const clientCredentials = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  apiKey: "AIzaSyBjGPaGc-ZjoE2mJBpQgZF9jKg4Hmbrlyk",
+  authDomain: "trip-expense-tracker-40e17.firebaseapp.com",
+  databaseURL: "https://trip-expense-tracker-40e17-default-rtdb.firebaseio.com",
+  projectId: "trip-expense-tracker-40e17",
+  storageBucket: "trip-expense-tracker-40e17.appspot.com",
+  messagingSenderId: "776919249943",
+  appId: "1:776919249943:web:439a0d04bb6f412f861852",
+  measurementId: "G-YBD9XE8JP1"
 };
 
 if (!firebase.apps.length) {
