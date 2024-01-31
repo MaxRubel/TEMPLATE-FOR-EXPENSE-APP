@@ -8,3 +8,7 @@ body {
   border-radius: 50%;
   width: 30px;
 }
+
+.form-control{
+  width: 500px
+}

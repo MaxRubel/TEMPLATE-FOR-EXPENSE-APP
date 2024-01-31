@@ -1,41 +1,65 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Button } from 'react-bootstrap';
-import { getBooks } from '../api/bookData';
-import { useAuth } from '../utils/context/authContext';
-import BookCard from '../components/BookCard';
+import React, { useState } from 'react';
+
+const initialState = { amount: '', description: '', date: '' };
 
 function Home() {
-  // TODO: Set a state for books
-  const [books, setBooks] = useState([]);
+  const [formInput, setFormInput] = useState(initialState);
+  // const { user } = useAuth();
 
-  // TODO: Get user ID using useAuth Hook
-  const { user } = useAuth();
-
-  // TODO: create a function that makes the API call to get all the books
-  const getAllTheBooks = () => {
-    getBooks(user.uid).then(setBooks);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prevValue) => ({ ...prevValue, [name]: value }));
   };
 
-  // TODO: make the call to the API to get all the books on component render
-  useEffect(() => {
-    getAllTheBooks();
-  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
-    <div className="text-center my-4">
-      <Link href="/book/new" passHref>
-        <Button>ADD A TRIP</Button>
-      </Link>
-      <div className="d-flex flex-wrap">
-        {/* TODO: map over books here using BookCard component */}
-        {books.map((book) => (
-          <BookCard key={book.firebaseKey} bookObj={book} onUpdate={getAllTheBooks} />
-        ))}
+    <form id="expenseForm" onSubmit={handleSubmit}>
+      <div
+        style={{
+          color: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        className="text-center my-4"
+      >
+        <h2 style={{ marginBottom: '8%' }}>Create Expense</h2>
+        <label htmlFor="amount">Amount</label>
+        <input
+          type="number"
+          name="amount"
+          className="form-control"
+          style={{ marginBottom: '3%' }}
+          value={formInput.amount}
+          onChange={handleChange}
+        />
+        <label htmlFor="description">Description</label>
+        <input
+          type="text"
+          name="description"
+          id="description"
+          className="form-control"
+          style={{ marginBottom: '3%' }}
+          onChange={handleChange}
+        ></input>
+        <label htmlFor="date">Date</label>
+        <input
+          type="date"
+          name="date"
+          className="form-control"
+          style={{ marginBottom: '6%' }}
+          onChange={handleChange}
+        />
+        <button type="submit" className="btn btn-secondary">
+          Submit{' '}
+        </button>
       </div>
-
-    </div>
+    </form>
   );
 }
 
